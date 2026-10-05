@@ -29,8 +29,13 @@ int main() {
     }
     
     // getRandomSuffix test:
+
+    // sometimes returns an empty string even if the prefix and suffix combination exists
+    // string prefix;
+    // cout << "Prefix: ";
+    // cin >> prefix;
     for (int i = 0; i < 10; i++) {
-        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "sat ") << std::endl;
+        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "The ") << std::endl;
     }
 
     return 0;

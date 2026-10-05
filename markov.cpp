@@ -98,14 +98,15 @@ std::string getRandomSuffix(const std::string prefixes[], const std::string suff
             return "";
     }
     
-    // The instructions aren't so clear when it says: Loop through the prefixes array again. Keep a counter for matches.
-    // When you find the 'pick'-th match, return the corresponding suffix.
-    // isn't pick selected from number of occurrences? if i had 3 occurrences, i can only check if prefixes[0, 1, 2] == currentPrefix ???
-
+    // try this: if found match, increment counter by 1, if counter = pick, return ith suffix
     int pick = rand() % occurrences; // gives a number from 0 to occurrences - 1
+    int count = 0;
     for (int i = 0; i < chainSize; i++) {
-        if (prefixes[pick] == currentPrefix) {
-            return suffixes[pick];
+        if (prefixes[i] == currentPrefix) {
+            if (count == pick) {
+                return suffixes[i];
+            }
+            count++;
         }
     }
 
