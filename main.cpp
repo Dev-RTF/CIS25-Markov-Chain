@@ -41,5 +41,11 @@ int main() {
         std::cout << getRandomPrefix(prefixes, chainSize) << std::endl;
     }
 
+    cout << "-\n-\n-\n";
+    // generateText test:
+    // bug with chain size of 3. also don't know what is meant by "updating the prefix"
+    std::string output = generateText(prefixes, suffixes, chainSize, 2, 20);
+    std::cout << output << std::endl;
+
     return 0;
 }
