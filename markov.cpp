@@ -17,10 +17,10 @@ std::string joinWords(const std::string words[], int startIndex, int count) {
     }
     
     // count should be the number of words, so count - 1 is the last index
-    for (int i = 0; i < count - 1; i++) {
+    for (int i = 0; i < count; i++) {
         result += words[startIndex + i];
         // add a space if it's not the last word
-        if (startIndex + i != count - 1) {
+        if (startIndex + i != count) {
             result += " ";
         }
     }
