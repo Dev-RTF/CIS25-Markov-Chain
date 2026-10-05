@@ -16,13 +16,9 @@ std::string joinWords(const std::string words[], int startIndex, int count) {
         return result;
     }
     
-    // count should be the number of words, so count - 1 is the last index
     for (int i = 0; i < count; i++) {
         result += words[startIndex + i];
-        // add a space if it's not the last word
-        if (startIndex + i != count) {
-            result += " ";
-        }
+        result += " ";
     }
 
     return result;
@@ -72,6 +68,7 @@ int buildMarkovChain(const std::string words[], int numWords, int order, std::st
     int i = 0;
     while (i < numWords - order && pairAmount < maxChainSize) {
         prefixes[i] = joinWords(words, i, order);
+        cout << prefixes[i] << endl;
         suffixes[i] = words[i + order];
         pairAmount++;
         i++;
@@ -97,7 +94,7 @@ std::string getRandomSuffix(const std::string prefixes[], const std::string suff
         }
     }
     
-    if (occurrences < 1) {
+    if (occurrences == 0) {
             return "";
     }
     

@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    // srand(time(0));
+    srand(time(0));
 
     // joinWords test:
     // std::string testWords[] = {"the", "cat", "sat", "down"};
@@ -23,14 +23,14 @@ int main() {
 
     // buildMarkovChain test:
     std::string prefixes[1000], suffixes[1000];
-    int chainSize = buildMarkovChain(words, count, 1, prefixes, suffixes, 1000);
+    int chainSize = buildMarkovChain(words, count, 2, prefixes, suffixes, 1000);
     for (int i = 0; i < 20 && i < chainSize; i++) {
         std::cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << std::endl;
     }
     
     // getRandomSuffix test:
     for (int i = 0; i < 10; i++) {
-        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "The ") << std::endl;
+        std::cout << getRandomSuffix(prefixes, suffixes, chainSize, "sat ") << std::endl;
     }
 
     return 0;
