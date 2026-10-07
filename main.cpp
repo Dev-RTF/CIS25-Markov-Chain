@@ -25,11 +25,13 @@ int main() {
     }
 
     // buildMarkovChain test:
+    int order = 1;
+    
     cout << endl;
     cout << "buildMarkovChain test:" << endl;
     cout << endl;
     std::string prefixes[1000], suffixes[1000];
-    int chainSize = buildMarkovChain(words, count, 2, prefixes, suffixes, 1000);
+    int chainSize = buildMarkovChain(words, count, order, prefixes, suffixes, 1000);
     for (int i = 0; i < 20 && i < chainSize; i++) {
         // cout << "main\n";
         std::cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << std::endl;
@@ -59,11 +61,12 @@ int main() {
     cout << endl;
     cout << "generateText test:" << endl;
     cout << endl;
-    std::string output = generateText(prefixes, suffixes, chainSize, 3, 200);
+    
+    int numWords = 200;
+    cout << "\norder: " << order << endl;
+    cout << "numWords: " << numWords << endl;
+    std::string output = generateText(prefixes, suffixes, chainSize, order, numWords);
     std::cout << output << std::endl;
-    // std::string output2 = generateText(prefixes, suffixes, chainSize, 2, 20, "[SPACE]");
-    // std::cout << output2 << std::endl;
-    // order 2: it looks as if there is an extra prefix appended to the front of the generated text
-    // order 3: generates 
+
     return 0;
 }
