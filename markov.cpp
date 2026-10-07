@@ -18,7 +18,9 @@ std::string joinWords(const std::string words[], int startIndex, int count) {
     
     for (int i = 0; i < count; i++) {
         result += words[startIndex + i];
-        result += " ";
+        if (i < count - 1) {
+            result += " ";
+        }
     }
 
     return result;
@@ -68,7 +70,7 @@ int buildMarkovChain(const std::string words[], int numWords, int order, std::st
     int i = 0;
     while (i < numWords - order && pairAmount < maxChainSize) {
         prefixes[i] = joinWords(words, i, order);
-        cout << prefixes[i] << endl;
+        // cout << prefixes[i] << endl;
         suffixes[i] = words[i + order];
         pairAmount++;
         i++;
@@ -138,6 +140,7 @@ std::string getRandomPrefix(const std::string prefixes[], int chainSize) {
 // Returns: Up to numWords words. Stop early at a dead end; do not invent a transition or restart elsewhere to fill the quota. For an empty chain, invalid order, or numWords < order, return "".
 std::string generateText(const std::string prefixes[], const std::string suffixes[], int chainSize, int order, int numWords) {
     if (chainSize <= 0 || order < 1 || order > 3 || numWords < order) {
+        cout << "Invalid Chainsize or Order";
         return "";
     }
 
@@ -155,6 +158,7 @@ std::string generateText(const std::string prefixes[], const std::string suffixe
             currentWords[wordIndex] = temp;
             wordIndex++;
             temp = "";
+            // cout << "Triggered";
         }
         else {
             temp += currentPrefix[i];
