@@ -13,7 +13,7 @@ int main() {
     int maxGeneratedWords = 0;
 
     cout << "Enter the name of the source file: ";
-    cin >> fileName;
+    std::getline(std::cin, fileName);
 
     while (order > 3 || order < 1) {
         cout << "Enter the order for generation (Between 1 and 3): ";
@@ -21,7 +21,7 @@ int main() {
     }
     
     while (maxGeneratedWords < order) {
-        cout << "Enter the maximum amount of words *you want generated*. It has to be greater than the order: ";
+        cout << "Enter the maximum amount of words *you want generated*. It has to be at least the order: ";
         cin >> maxGeneratedWords;
     }
 
@@ -56,13 +56,16 @@ int main() {
     }
 
     if (chainSize < MAX_WORDS) {
-        cout << "Some words have been ignored.\n";
+        cout << "\nWARNING: Prefixes and suffixes filled to capacity. The rest of the text has been ignored.\n";
     }
    
     /*
     6. Generate up to the requested number of words, stopping if a prefix has no successor.
     7. Print the generated text and its actual word count. If it is shorter than requested, explain that generation stopped at a dead end. Count the words in the returned text; do not change the required function signature.
     */
+
+    cout << endl;
+    cout << "--------------------- Generated Text ---------------------" << endl;
     std::string output = generateText(prefixes, suffixes, chainSize, order, maxGeneratedWords);
     std::cout << output << std::endl;
     
@@ -74,13 +77,14 @@ int main() {
     }
     generatedWords++; // it's always 1 off for some reason...
 
-    cout << "--------------------- Generation Summary ---------------------" << endl;
+    cout << "\n--------------------- Generation Summary ---------------------" << endl;
+    cout << "File: " << fileName << endl;
+    cout << "Order: " << order << endl;
     cout << "Words generated: " << generatedWords << "/" << maxGeneratedWords << endl;
     
     if (generatedWords < maxGeneratedWords) {
         cout << "The generation stopped at a dead end, causing " << generatedWords << "/" << maxGeneratedWords << " words to be generated." << endl;
     }
     
-
     return 0;
 }
